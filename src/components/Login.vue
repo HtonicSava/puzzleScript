@@ -1,6 +1,6 @@
 <template>
   <v-row justify="center">
-  <v-dialog
+    <v-dialog
       v-model="dialog"
       max-width="50%"
       hide-overlay
@@ -28,17 +28,9 @@
           >
             <v-icon>mdi-close</v-icon>
           </v-btn>
-          <v-toolbar-title>Settings</v-toolbar-title>
+          <v-toolbar-title class="ml-0 pl-0">Авторизация</v-toolbar-title>
           <v-spacer></v-spacer>
-          <v-toolbar-items>
-            <v-btn
-              dark
-              text
-              @click="dialog = false"
-            >
-              Save
-            </v-btn>
-          </v-toolbar-items>
+
         </v-toolbar>
         <v-list
           three-line
@@ -65,9 +57,6 @@
         >
           <v-subheader>General</v-subheader>
           <v-list-item>
-            <v-list-item-action>
-              <v-checkbox v-model="notifications"></v-checkbox>
-            </v-list-item-action>
             <v-list-item-content>
               <v-list-item-title>Notifications</v-list-item-title>
               <v-list-item-subtitle>Notify me about updates to apps or games that I downloaded</v-list-item-subtitle>
@@ -75,7 +64,6 @@
           </v-list-item>
           <v-list-item>
             <v-list-item-action>
-              <v-checkbox v-model="sound"></v-checkbox>
             </v-list-item-action>
             <v-list-item-content>
               <v-list-item-title>Sound</v-list-item-title>
@@ -84,7 +72,6 @@
           </v-list-item>
           <v-list-item>
             <v-list-item-action>
-              <v-checkbox v-model="widgets"></v-checkbox>
             </v-list-item-action>
             <v-list-item-content>
               <v-list-item-title>Auto-add widgets</v-list-item-title>
