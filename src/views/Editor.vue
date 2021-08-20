@@ -1,27 +1,34 @@
 <template>
-  <div class="main">
+  <div class="editor">
+    <Header fixed/>
+    
+    <div class="main">
+      <vue-file-toolbar-menu :content="menu" class="bar" />
 
-    <!-- Top bar -->
-    <vue-file-toolbar-menu :content="menu" class="bar" />
-
-    <!-- Document editor -->
-    <vue-document-editor class="editor" ref="editor"
-      :content.sync="content"
-      :overlay="overlay"
-      :zoom="zoom"
-      :page_format_mm="page_format_mm"
-      :page_margins="page_margins"
-      :display="display" />
-
+      <vue-document-editor class="editor" ref="editor"
+        :content.sync="content"
+        :overlay="overlay"
+        :zoom="zoom"
+        :page_format_mm="page_format_mm"
+        :page_margins="page_margins"
+        :display="display"
+      />
+    </div>
   </div>
 </template>
 
 <script>
 import VueFileToolbarMenu from 'vue-file-toolbar-menu';
-import VueDocumentEditor from '../components/DocumentEditor/DocumentEditor.vue'
+import VueDocumentEditor from '../components/DocumentEditor/DocumentEditor.vue';
+
+import Header from '@/components/Header.vue';
 
 export default {
-  components: { VueDocumentEditor, VueFileToolbarMenu },
+  components: { 
+    VueDocumentEditor,
+    VueFileToolbarMenu,
+    Header,
+  },
   data () {
     return {
       content: [
@@ -165,50 +172,42 @@ export default {
           menu_width: 200,
           menu_class: "align-center"
         },
-        { // Zoom menu
-          text: Math.floor(this.zoom * 100) + "%",
-          title: "Увеличить",
-          icon: "zoom_in",
-          chevron: true,
-          menu: [
-            ["200%", 2.0],
-            ["150%", 1.5],
-            ["125%", 1.25],
-            ["100%", 1.0],
-            ["75%", 0.75],
-            ["50%", 0.5],
-            ["25%", 0.25]
-          ].map(([text, zoom]) => {
-            return {
-              text,
-              active: this.zoom == zoom,
-              click: () => { this.zoom = zoom; }
-            }
-          }),
-          menu_width: 80,
-          menu_height: 280,
-          menu_class: "align-center"
-        },
-        { // Display mode menu
-          title: "Экран",
-          icon: this.display == "horizontal" ? "view_column" : (this.display == "vertical" ? "view_stream" : "view_module"),
-          chevron: true,
-          menu: [{
-            icon: "view_module",
-            active: this.display == "grid",
-            click: () => { this.display = "grid"; }
-          }, {
-            icon: "view_column",
-            active: this.display == "horizontal",
-            click: () => { this.display = "horizontal"; }
-          }, {
-            icon: "view_stream",
-            active: this.display == "vertical",
-            click: () => { this.display = "vertical"; }
-          }],
-          menu_width: 55,
-          menu_class: "align-right"
-        }
+        // { // Zoom menu
+        //   text: Math.floor(this.zoom * 100) + "%",
+        //   title: "Увеличить",
+        //   icon: "zoom_in",
+        //   chevron: true,
+        //   menu: [
+        //     ["200%", 2.0],
+        //     ["150%", 1.5],
+        //     ["125%", 1.25],
+        //     ["100%", 1.0],
+        //     ["75%", 0.75],
+        //     ["50%", 0.5],
+        //     ["25%", 0.25]
+        //   ].map(([text, zoom]) => {
+        //     return {
+        //       text,
+        //       active: this.zoom == zoom,
+        //       click: () => { this.zoom = zoom; }
+        //     }
+        //   }),
+        //   menu_width: 80,
+        //   menu_height: 280,
+        //   menu_class: "align-center"
+        // },
+        // { // Display mode menu
+        //   title: "Экран",
+        //   icon: this.display == "horizontal" ? "view_column" : (this.display == "vertical" ? "view_stream" : "view_module"),
+        //   chevron: true,
+        //   menu: [{
+        //     icon: "view_module",
+        //     active: this.display == "grid",
+        //     click: () => { this.display = "grid"; }
+        //   }],
+        //   menu_width: 55,
+        //   menu_class: "align-right"
+        // }
       ]
     },
     // Formats management
@@ -349,25 +348,25 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background-color: rgba(0, 0, 0, 0.8);
 }
-</style>
+.main {
+  width: fit-content;
+  margin: auto;
+}
+.bar {
+  width: 80%;
+  margin: auto !important;
 
-<style scoped>
-  .main {
-    width: fit-content;
-    min-width: 100%;
-  }
-  .bar {
-    position: sticky;
-    left: 0;
-    top: 0;
-    width: calc(100vw - 16px);
-    z-index: 1000;
-    background: rgba(248, 249, 250, 0.8);
-    border-bottom: solid 1px rgb(248, 249, 250);
-    backdrop-filter: blur(10px);
-    --bar-button-active-color: #188038;
-    --bar-button-open-color: #188038;
-    --bar-button-active-bkg: #e6f4ea;
-    --bar-button-open-bkg: #e6f4ea;
-  }
+  position: sticky;
+  left: 0;
+  top: 0;
+  /* width: calc(100vw - 16px); */
+  z-index: 1000;
+  background: rgba(248, 249, 250, 0.8);
+  border-bottom: solid 1px rgb(248, 249, 250);
+  backdrop-filter: blur(10px);
+  --bar-button-active-color: #188038;
+  --bar-button-open-color: #188038;
+  --bar-button-active-bkg: #e6f4ea;
+  --bar-button-open-bkg: #e6f4ea;
+}
 </style>
