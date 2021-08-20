@@ -2,6 +2,9 @@
   <div class="main">
     <Header />
     <Description />
+    <Functional />
+    <Team />
+    <Connect />
     <div class="mt-4 wrapper">
       
     </div>
@@ -20,6 +23,9 @@
 import Header from '@/components/header.vue';
 import modalLogin from '@/components/Login.vue';
 import Description from '@/components/Description.vue';
+import Functional from '@/components/Functional.vue';
+import Team from '@/components/Team.vue';
+import Connect from '@/components/Connect.vue';
 
 export default {
   name: 'Main',
@@ -32,6 +38,9 @@ export default {
     Header,
     Description,
     modalLogin,
+    Functional,
+    Team,
+    Connect,
   },
   methods: {
     toggleModalLogin() {
