@@ -36,7 +36,44 @@
         font-weight: 500;
         font-size: 24px;
         line-height: 28px;
-
         color: #3A3A3A;
+        background-color: white;
+    }
+
+    .header__content{
+      max-width: 1280px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 0px 26px;
+    }
+
+    .header__nav{
+      display: flex;
+      justify-content: space-between;
+      flex-grow: 1;
+      align-items: center;
+      padding: 0px 50px 5px;
+      
+        p{
+          cursor: pointer;
+          transition: 0.3s;
+          &:hover{
+           color: #3B7A20;
+          }
+          
+        }
+      
+    }
+
+    .header__social{
+      img{
+        cursor: pointer;
+        margin-right: 10px;
+        &:last-child {
+          margin-right: 0px;
+        }
+      }
     }
 </style>
