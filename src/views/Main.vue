@@ -3,14 +3,16 @@
     <Header />
     <Description />
     <div class="mt-4 wrapper">
-
+      
     </div>
 
     <modalLogin
       v-model="flag_modal_login"
     />
 
-    <div @click="toggleModalLogin">OpenLogin</div>
+    <modalRegistery
+      v-model="flag_modal_registery"
+    />
   </div>
 </template>
 
