@@ -34,16 +34,51 @@
 
 <style lang="scss" scoped>
 .connect {
+    padding: 150px 0px 230px;
 }
 .connect__content {
+    max-width: 1140px;
+    margin: auto;
+    position: relative;
 }
 .connect__suptitle {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 26px;
+    line-height: 30px;
+    color: #B8B8B8;
+    text-align: left;
+    margin-bottom: 16px;
 }
 .connect__title {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 50px;
+    line-height: 59px;
+    color: #333333;
+    text-align: left;
+    margin-bottom: 32px;
 }
 .connect__text {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+    color: #505050;
+    text-align: left;
+    max-width: 600px;
 }
 .connect__img {
+    opacity: 0.6;
+    position: absolute;
+    right: 0px;
+    transform: translate(10%, -60%);
+    img{
+        max-width: 80%;
+    }
 }
 
 </style>
