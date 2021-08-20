@@ -1,14 +1,14 @@
 import axios from "axios";
-import Cookies from 'vue-cookies';
+// import Cookies from 'vue-cookies';
 
 const instanse = axios.create({
-  baseURL: 'http://sirius-studio.com:8000/api',
+  baseURL: 'http://89.223.69.148:8000/api/',
 });
 
 instanse.interceptors.request.use(
   function(request) {
-    const token = Cookies.get('Token');
-    instanse.defaults.headers = {authorization: token};
+    // const token = Cookies.get('Token');
+    // instanse.defaults.headers = {authorization: token};
 
     return request;
   },
@@ -19,13 +19,13 @@ instanse.interceptors.request.use(
 
 instanse.interceptors.response.use(
   function(response) {
-    const headers = response.headers;
+    // const headers = response.headers;
 
-    if (response.config.url == '/login/') {
-      if ( headers.authorization ) {
-        Cookies.set('Token', headers.authorization);
-      }
-    }
+    // if (response.config.url == '/login/') {
+    //   if ( headers.authorization ) {
+    //     Cookies.set('Token', headers.authorization);
+    //   }
+    // }
 
     return response;
   },
