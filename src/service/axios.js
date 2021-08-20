@@ -1,5 +1,5 @@
 import axios from "axios";
-// import Cookies from 'vue-cookies';
+import Cookies from 'vue-cookies';
 
 const instanse = axios.create({
   baseURL: 'http://89.223.69.148:8000/api/',
@@ -7,9 +7,12 @@ const instanse = axios.create({
 
 instanse.interceptors.request.use(
   function(request) {
-    // const token = Cookies.get('Token');
-    // instanse.defaults.headers = {authorization: token};
+    const token = Cookies.get('Token');
 
+    if (token) {
+      instanse.defaults.headers = { authorization: token };
+    }
+    
     return request;
   },
   function(error) {
