@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import Header from '@/components/header.vue';
+import Header from '@/components/Header.vue';
 import modalLogin from '@/components/Login.vue';
 import Description from '@/components/Description.vue';
 import Functional from '@/components/Functional.vue';

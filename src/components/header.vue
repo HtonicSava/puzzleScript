@@ -1,31 +1,33 @@
 <template>
-  <div class="header">
-       <div class="header__content">
-         <div class="header__logo">
-           <img src="../assets/img/header/session.png" alt="">
-         </div>
-         <div class="header__nav">
-           <p>Бета-тест</p>
-           <p>Принцип работы</p>
-           <p>Преимущества</p>
-           <p>Команда</p>
-         </div>
-         <div class="header__social">
-           <img src="../assets/img/header/facebook.png" alt="">
-           <img src="../assets/img/header/inst.png" alt="">
-           <img src="../assets/img/header/twitter.png" alt="">
-         </div>
-       </div>
+  <div class="header" :style="{'position': !fixed?'fixed':''}">
+    <div class="header__content">
+      <div class="header__logo">
+        <img src="../assets/img/header/session.png" alt="">
+      </div>
+      <div class="header__nav">
+        <p>Бета-тест</p>
+        <p>Принцип работы</p>
+        <p>Преимущества</p>
+        <p>Команда</p>
+      </div>
+      <div class="header__social">
+        <img src="../assets/img/header/facebook.png" alt="">
+        <img src="../assets/img/header/inst.png" alt="">
+        <img src="../assets/img/header/twitter.png" alt="">
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
   export default {
-    name: 'header',
-    data: function () {
-
-    }
-     
+    name: 'Header',
+    props: {
+      fixed: {
+        type: Boolean,
+        default: false,
+      }
+    },
   }
 </script>
 
@@ -33,7 +35,7 @@
     .header{
         width: 100%;
         z-index: 10;
-        position: fixed;
+        // position: fixed;
         font-family: Roboto;
         font-style: normal;
         font-weight: 500;
