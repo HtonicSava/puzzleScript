@@ -31,6 +31,9 @@
 
 <style lang="scss" scoped>
     .header{
+        width: 100%;
+        z-index: 10;
+        position: fixed;
         font-family: Roboto;
         font-style: normal;
         font-weight: 500;
@@ -38,6 +41,9 @@
         line-height: 28px;
         color: #3A3A3A;
         background-color: white;
+        p{
+          margin-bottom: 0px;
+        }
     }
 
     .header__content{
@@ -46,7 +52,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 18px 0px 26px;
+
     }
 
     .header__nav{

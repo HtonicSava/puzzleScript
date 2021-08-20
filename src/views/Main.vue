@@ -1,7 +1,6 @@
 <template>
   <div class="main">
     <Header />
-
     <div class="mt-4 wrapper">
 
     </div>
