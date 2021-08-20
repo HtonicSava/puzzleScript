@@ -36,6 +36,7 @@
             v-model="email"
             label="Email"
             class="mb-4"
+            type="email"
             required
             hide-details
             placeholder="Email"
@@ -47,6 +48,7 @@
             v-model="password"
             label="Пароль"
             class="mb-4"
+            type="password"
             required
             hide-details
             placeholder="Пароль"
@@ -81,6 +83,8 @@ import Vue from 'vue';
 import VueToast from 'vue-toast-notification';
 import 'vue-toast-notification/dist/theme-sugar.css';
 
+import Cookies from 'vue-cookies';
+
 Vue.use(VueToast);
 
 export default {
@@ -98,9 +102,6 @@ export default {
   data() {
     return {
       email: null,
-      first_name: null,
-      last_name: null,
-      phone: null,
       password: null,
     }
   },
@@ -116,26 +117,17 @@ export default {
       }
     }
   },
-  mounted() {
-    // this.email = 'test@test.ru';
-    // this.password = 'test';
-
-    // Vue.$toast.success('Тест', {
-    //   position: 'top-right'
-    // })
-
-    // this.login();
-  },
-  methods: {
+  methods: {  
     async login() {
       const data = {
         email: this.email,
         password: this.password
       };
-
       const res = await user.login(data);
 
-      console.log(res);
+      Cookies.set('Token', res.data.authorization);     
+      
+      
     }
   }
 }

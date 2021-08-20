@@ -1,48 +1,140 @@
 <template>
-  <div class="home">
+  <v-row justify="center">
+    <v-dialog
+      v-model="dialog"
+      max-width="40%"
+      transition="dialog-bottom-transition"
+    >
+      <v-card>
+        <v-toolbar
+          dark
+          color="#D2F1C4"
+          style="
+            color: #000;
+          "
+          class="pl-4"
+        >
+          <v-btn
+            icon
+            dark
+            @click="dialog = false"
+          >
+            <v-icon
+              color="#000"
+            >mdi-close</v-icon>
+          </v-btn>
+          <v-toolbar-title class="ml-0 pl-0">Авторизация</v-toolbar-title>
+          <v-spacer></v-spacer>
 
-  </div>
+        </v-toolbar>
+
+        <form
+          @submit.prevent="login"
+          class="pa-8"
+        >
+          <v-text-field
+            v-model="email"
+            label="Email"
+            class="mb-4"
+            type="email"
+            required
+            hide-details
+            placeholder="Email"
+            outlined
+            dense
+          ></v-text-field>
+
+           <v-text-field
+            v-model="password"
+            label="Пароль"
+            class="mb-4"
+            type="password"
+            required
+            hide-details
+            placeholder="Пароль"
+            outlined
+            dense
+          ></v-text-field>
+
+          <div class="mb-4">
+            <p>Все еще нет аккаунта? <span style="color: #3B7A20; cursor: pointer;" @click="callback">Зарегистрироваться</span></p>
+          </div>
+
+          <v-btn
+            class="text-none"
+            type="submit"
+            width="100%"
+            color="#3B7A20"
+            text-color="#fff"
+            dark
+          >
+            Войти
+          </v-btn>
+        </form>
+      </v-card>
+    </v-dialog>
+  </v-row>
 </template>
 
 <script>
 import { user } from '@/plugins/helper.js';
 
+import Vue from 'vue';
+import VueToast from 'vue-toast-notification';
+import 'vue-toast-notification/dist/theme-sugar.css';
+
+import Cookies from 'vue-cookies';
+
+Vue.use(VueToast);
+
 export default {
   name: 'Registery',
+  props: {
+    value: {
+      type: Boolean,
+      default: false
+    },
+    callback: {
+      type: Function,
+      default: () => {}
+    }
+  },
   data() {
     return {
       email: null,
-      first_name: null,
-      last_name: null,
-      phone: null,
-      password: null
+      password: null,
     }
   },
   components: {
   },
-  mounted() {
-    this.email = 'test@test.ru';
-    this.first_name = 'Test';
-    this.last_name = 'Test';
-    this.phone = '88005553535';
-    this.password = 'test';
-
-    this.login();
+  computed: {
+    dialog: {
+      get() {
+        return this.value;
+      },
+      set(value) {
+        this.$emit('input', value);
+      }
+    }
   },
-  methods: {
+  methods: {  
     async login() {
       const data = {
         email: this.email,
-        first_name: this.first_name,
-        last_name: this.last_name,
-        phone: this.phone,
         password: this.password
       };
+      const res = await user.login(data);
 
-      const res = await user.registery(data);
-
-      console.log(res);
+      Cookies.set('Token', res.data.authorization);     
+      
+      
     }
   }
 }
 </script>
+
+<style>
+.v-dialog {
+  border-radius: 50px !important
+}
+</style>
