@@ -12,9 +12,6 @@
     <modalRegistery
       v-model="flag_modal_registery"
     />
-
-    <div @click="toggleModalLogin">OpenLogin</div>
-    <div @click="toggleModalRegistery">OpenRegistery</div>
   </div>
 </template>
 
