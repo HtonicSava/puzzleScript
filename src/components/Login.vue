@@ -2,83 +2,73 @@
   <v-row justify="center">
     <v-dialog
       v-model="dialog"
-      max-width="50%"
-      hide-overlay
+      max-width="40%"
       transition="dialog-bottom-transition"
     >
-      <template v-slot:activator="{ on, attrs }">
-        <v-btn
-          color="primary"
-          dark
-          v-bind="attrs"
-          v-on="on"
-        >
-          Open Dialog
-        </v-btn>
-      </template>
       <v-card>
         <v-toolbar
           dark
-          color="primary"
+          color="#D2F1C4"
+          style="
+            color: #000;
+          "
+          class="pl-4"
         >
           <v-btn
             icon
             dark
             @click="dialog = false"
           >
-            <v-icon>mdi-close</v-icon>
+            <v-icon
+              color="#000"
+            >mdi-close</v-icon>
           </v-btn>
           <v-toolbar-title class="ml-0 pl-0">Авторизация</v-toolbar-title>
           <v-spacer></v-spacer>
 
         </v-toolbar>
-        <v-list
-          three-line
-          subheader
+
+        <form
+          @submit.prevent="login"
+          class="pa-8"
         >
-          <v-subheader>User Controls</v-subheader>
-          <v-list-item>
-            <v-list-item-content>
-              <v-list-item-title>Content filtering</v-list-item-title>
-              <v-list-item-subtitle>Set the content filtering level to restrict apps that can be downloaded</v-list-item-subtitle>
-            </v-list-item-content>
-          </v-list-item>
-          <v-list-item>
-            <v-list-item-content>
-              <v-list-item-title>Password</v-list-item-title>
-              <v-list-item-subtitle>Require password for purchase or use password to restrict purchase</v-list-item-subtitle>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list>
-        <v-divider></v-divider>
-        <v-list
-          three-line
-          subheader
-        >
-          <v-subheader>General</v-subheader>
-          <v-list-item>
-            <v-list-item-content>
-              <v-list-item-title>Notifications</v-list-item-title>
-              <v-list-item-subtitle>Notify me about updates to apps or games that I downloaded</v-list-item-subtitle>
-            </v-list-item-content>
-          </v-list-item>
-          <v-list-item>
-            <v-list-item-action>
-            </v-list-item-action>
-            <v-list-item-content>
-              <v-list-item-title>Sound</v-list-item-title>
-              <v-list-item-subtitle>Auto-update apps at any time. Data charges may apply</v-list-item-subtitle>
-            </v-list-item-content>
-          </v-list-item>
-          <v-list-item>
-            <v-list-item-action>
-            </v-list-item-action>
-            <v-list-item-content>
-              <v-list-item-title>Auto-add widgets</v-list-item-title>
-              <v-list-item-subtitle>Automatically add home screen widgets</v-list-item-subtitle>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list>
+          <v-text-field
+            v-model="email"
+            label="Email"
+            class="mb-4"
+            required
+            hide-details
+            placeholder="Email"
+            outlined
+            dense
+          ></v-text-field>
+
+           <v-text-field
+            v-model="password"
+            label="Пароль"
+            class="mb-4"
+            required
+            hide-details
+            placeholder="Пароль"
+            outlined
+            dense
+          ></v-text-field>
+
+          <div class="mb-4">
+            <p>Все еще нет аккаунта? <span style="color: #3B7A20; cursor: pointer;" @click="callback">Зарегистрироваться</span></p>
+          </div>
+
+          <v-btn
+            class="text-none"
+            type="submit"
+            width="100%"
+            color="#3B7A20"
+            text-color="#fff"
+            dark
+          >
+            Войти
+          </v-btn>
+        </form>
       </v-card>
     </v-dialog>
   </v-row>
@@ -95,7 +85,16 @@ Vue.use(VueToast);
 
 export default {
   name: 'Login',
-  props: ['value'],
+  props: {
+    value: {
+      type: Boolean,
+      default: false
+    },
+    callback: {
+      type: Function,
+      default: () => {}
+    }
+  },
   data() {
     return {
       email: null,
@@ -141,3 +140,9 @@ export default {
   }
 }
 </script>
+
+<style>
+.v-dialog {
+  border-radius: 50px !important
+}
+</style>
