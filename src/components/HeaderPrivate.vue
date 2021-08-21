@@ -32,7 +32,7 @@
             alt=""
           />
 
-          <router-link to="/private-office" tag="div" style="background: #7CDD52; height: 40px; border-radius: 6px;" class="pl-2 pr-2 d-flex align-center cursor-pointer" v-else>
+          <router-link to="/private-office" tag="p" style="background: #7CDD52; height: 40px; border-radius: 6px;" class="pl-2 pr-2 d-flex align-center cursor-pointer" v-else>
             <span>Протоколы</span>
             <v-icon>mdi-arrow-right</v-icon>
           </router-link>

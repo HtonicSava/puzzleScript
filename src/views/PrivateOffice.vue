@@ -38,7 +38,7 @@ export default {
     Header,
     Footer,
     Card,
-    Sidebar
+    Sidebar,
   },
 }
 </script>

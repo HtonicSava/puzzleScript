@@ -14,6 +14,8 @@
         :display="display"
       />
     </div>
+
+    <Save/>
   </div>
 </template>
 
@@ -23,11 +25,14 @@ import VueDocumentEditor from '../components/DocumentEditor/DocumentEditor.vue';
 
 import Header from '@/components/HeaderPrivate.vue';
 
+import Save from '@/components/Save.vue';
+
 export default {
   components: { 
     VueDocumentEditor,
     VueFileToolbarMenu,
     Header,
+    Save
   },
   data () {
     return {
