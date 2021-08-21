@@ -19,10 +19,10 @@
           dense
         ></v-text-field>
 
-        <h3 v-else class="ml-4">{{name_protocol}}</h3>
+        <h3 v-else class="ml-4 black--text">{{name_protocol}}</h3>
 
         <div class="d-flex">
-          <v-icon color="#898989" size="40px" class="mr-2 cursor-pointer ">mdi-cog-outline</v-icon>
+          <v-icon color="#000" size="40px" class="mr-2 cursor-pointer ">mdi-cog-outline</v-icon>
 
           <img
             v-if="!search_elem"
@@ -32,8 +32,8 @@
             alt=""
           />
 
-          <router-link to="/private-office" tag="p" style="background: #7CDD52; height: 40px; border-radius: 6px;" class="pl-2 pr-2 d-flex align-center cursor-pointer" v-else>
-            <span>Протоколы</span>
+          <router-link to="/private-office" tag="p" style="background: #7ed957; height: 40px; border-radius: 6px;" class="pl-2 pr-2 d-flex align-center cursor-pointer" v-else>
+            <span class="black--text">Протоколы</span>
             <v-icon>mdi-arrow-right</v-icon>
           </router-link>
         </div>
