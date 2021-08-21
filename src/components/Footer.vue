@@ -8,9 +8,9 @@
 
 <script>
   export default {
-    name: 'footer',
+    name: 'Footer',
     data: function () {
-
+      return {}
     }
   }
 </script>

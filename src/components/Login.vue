@@ -29,7 +29,7 @@
         </v-toolbar>
 
         <form
-          @submit.prevent="login"
+          @submit.prevent="submit"
           class="pa-8"
         >
           <v-text-field
@@ -44,7 +44,7 @@
             dense
           ></v-text-field>
 
-           <v-text-field
+          <v-text-field
             v-model="password"
             label="Пароль"
             class="mb-4"
@@ -57,7 +57,7 @@
           ></v-text-field>
 
           <div class="mb-4">
-            <p>Все еще нет аккаунта? <span style="color: #3B7A20; cursor: pointer;" @click="callback">Зарегистрироваться</span></p>
+            <p>Все еще нет аккаунта? <span style="color: #3B7A20; cursor: pointer;" @click="openReg">Зарегистрироваться</span></p>
           </div>
 
           <v-btn
@@ -82,10 +82,9 @@ import { user } from '@/plugins/helper.js';
 import Vue from 'vue';
 import VueToast from 'vue-toast-notification';
 import 'vue-toast-notification/dist/theme-sugar.css';
+Vue.use(VueToast);
 
 import Cookies from 'vue-cookies';
-
-Vue.use(VueToast);
 
 export default {
   name: 'Login',
@@ -96,7 +95,7 @@ export default {
     },
     callback: {
       type: Function,
-      default: () => {}
+      default: null
     }
   },
   data() {
@@ -104,8 +103,6 @@ export default {
       email: null,
       password: null,
     }
-  },
-  components: {
   },
   computed: {
     dialog: {
@@ -115,19 +112,37 @@ export default {
       set(value) {
         this.$emit('input', value);
       }
-    }
+    },
   },
   methods: {  
-    async login() {
+    async submit() {
       const data = {
         email: this.email,
         password: this.password
       };
-      const res = await user.login(data);
+      
+      user.login(data).then((res) => {
+        console.log(res);
+        
+        Cookies.set('Token', res.data.authorization);     
+        Cookies.set('Auth', true);
 
-      Cookies.set('Token', res.data.authorization);     
-      
-      
+        window.location.reload();
+      }).catch((err) => {
+        console.log(err);
+
+        Vue.$toast.error('Ой ошибочка!', {
+          position: 'top-right'
+        });
+
+        Cookies.set('Auth', false);
+      });
+    },
+    openReg() {
+      if (typeof(this.callback) == 'function') {
+        this.dialog = false;
+        this.callback();
+      }
     }
   }
 }

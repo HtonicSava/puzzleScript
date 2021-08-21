@@ -1,6 +1,6 @@
 <template>
   <div class="editor">
-    <Header fixed/>
+    <Header fixed search_elem :name_protocol="name_protocol + '' + idProtocol"/>
     
     <div class="main">
       <vue-file-toolbar-menu :content="menu" class="bar" />
@@ -21,7 +21,7 @@
 import VueFileToolbarMenu from 'vue-file-toolbar-menu';
 import VueDocumentEditor from '../components/DocumentEditor/DocumentEditor.vue';
 
-import Header from '@/components/Header.vue';
+import Header from '@/components/HeaderPrivate.vue';
 
 export default {
   components: { 
@@ -42,7 +42,9 @@ export default {
       display: "grid", // ["grid", "vertical", "horizontal"]
       mounted: false, // will be true after this component is mounted
       undo_count: -1, // contains the number of times user can undo (= current position in content_history)
-      content_history: [] // contains the content states for undo/redo operations
+      content_history: [], // contains the content states for undo/redo operations
+
+      name_protocol: 'Test 1'
     }
   },
   created () {
@@ -108,8 +110,15 @@ export default {
     // If your component is susceptible to be destroyed, don't forget to
     // use window.removeEventListener in the Vue.js beforeDestroy handler
   },
-  mounted () { this.mounted = true; },
+  mounted () {
+    this.mounted = true;
+
+    this.loadData();
+  },
   computed: {
+    idProtocol() {
+      return this.$route.params.id;
+    },
     // This is the menu content
     menu () {
       return [
@@ -260,6 +269,9 @@ export default {
     can_redo () { return this.content_history.length - this.undo_count - 1 > 0; }
   },
   methods: {
+    loadData() {
+      console.log('LOAD');
+    },
     // Page overlays (headers, footers, page numbers)
     overlay (page, total) {
       // Add page numbers on each page

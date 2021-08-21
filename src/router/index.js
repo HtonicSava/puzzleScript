@@ -10,10 +10,15 @@ const routes = [
     component: () => import('../views/Main.vue')
   },
   {
-    path: '/editor',
+    path: '/editor/:id',
     name: 'Editor',
     component: () => import('../views/Editor.vue')
-  }
+  },
+  {
+    path: '/private-office',
+    name: 'PrivateOffice',
+    component: () => import('../views/PrivateOffice.vue')
+  },
 ]
 
 const router = new VueRouter({

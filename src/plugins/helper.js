@@ -6,8 +6,6 @@ class Req {
   }
 
   async post(url, data) {
-    console.log(data);
-
     return await axios.post(`/${url}/`, data);
   }
 }

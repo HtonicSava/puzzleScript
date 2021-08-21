@@ -48,7 +48,7 @@
   export default {
     name: 'description',
     data: function () {
-
+        return {}
     }
      
   }

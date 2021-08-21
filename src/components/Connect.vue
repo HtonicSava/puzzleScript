@@ -28,6 +28,7 @@
   export default {
     name: 'connect',
     data: function () {
+        return {}
     }
   }
 </script>

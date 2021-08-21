@@ -27,4 +27,8 @@
     }
   }
 }
+
+.cursor-pointer {
+  cursor: pointer;
+}
 </style>

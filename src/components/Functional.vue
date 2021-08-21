@@ -55,7 +55,7 @@
   export default {
     name: 'functional',
     data: function () {
-
+        return {}
     }
      
   }

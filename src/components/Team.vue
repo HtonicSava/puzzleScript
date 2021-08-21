@@ -56,6 +56,7 @@
   export default {
     name: 'team',
     data: function () {
+        return {}
     }
   }
 </script>
